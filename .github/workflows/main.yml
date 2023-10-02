@@ -15,7 +15,7 @@ jobs:
         run: |
           #echo "rajan" > ~/.ssh/id_rsa 
           # echo ---- take clone in remote server -----
-          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          install -m 400 -D /dev/null ~/.ssh/id_rsa
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           ssh-keyscan -H "${{ secrets.SSH_HOST }}" > ~/.ssh/known_hosts
 
