@@ -24,6 +24,7 @@ jobs:
           ssh "${{ secrets.SSH_USER }}"@"${{ secrets.SSH_HOST }}" << EOF
           echo ----- make directory in remote server -----
           mkdir bhardwaj
+          cd /home/ubuntu/bhardwaj
           git clone git@github.com:rajan-addweb/clone-test.git
           exit
           EOF
