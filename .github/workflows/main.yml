@@ -11,22 +11,22 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v3
-      - name: Install SSH keys
-        run: |
+        #- name: Install SSH keys
+        #run: |
           #echo "rajan" > ~/.ssh/id_rsa 
-          echo ---- take clone in remote server -----
-          install -m 600 -D /dev/null ~/.ssh/id_rsa
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          ssh-keyscan -H "${{ secrets.SSH_HOST }}" > ~/.ssh/known_hosts
-      - name: connect and clone
-        run: | 
-          ssh "${{ secrets.SSH_USER }}"@"${{ secrets.SSH_HOST }}" << EOF
-          #echo ----- make directory in remote server -----
-          mkdir new
+          # echo ---- take clone in remote server -----
           #install -m 600 -D /dev/null ~/.ssh/id_rsa
           #echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           #ssh-keyscan -H "${{ secrets.SSH_HOST }}" > ~/.ssh/known_hosts
-          #echo ---- take clone in remote server -----
+      - name: connect and clone
+        run: | 
+          ssh "${{ secrets.SSH_USER }}"@"${{ secrets.SSH_HOST }}" << EOF
+          echo ----- make directory in remote server -----
+          mkdir new
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          ssh-keyscan -H "${{ secrets.SSH_HOST }}" > ~/.ssh/known_hosts
+          echo ---- take clone in remote server -----
           git clone git@github.com:rajan-addweb/clone-test.git
           exit
           EOF
