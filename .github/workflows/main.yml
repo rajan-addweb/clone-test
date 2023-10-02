@@ -25,7 +25,7 @@ jobs:
           mkdir new
           install -m 600 -D /dev/null ~/.ssh/id_rsa
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          ssh-keyscan -H "${{ secrets.SSH_HOST }}" > ~/.ssh/known_hosts
+          ssh-keyscan -t -H "${{ secrets.SSH_HOST }}" > ~/.ssh/known_hosts
           echo ---- take clone in remote server -----
           git clone git@github.com:rajan-addweb/clone-test.git
           exit
