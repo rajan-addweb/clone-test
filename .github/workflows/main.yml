@@ -14,6 +14,7 @@ jobs:
       - name: Install SSH keys
         run: |
           #echo "rajan" > ~/.ssh/id_rsa 
+          echo ---- take clone in remote server -----
           install -m 600 -D /dev/null ~/.ssh/id_rsa
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           ssh-keyscan -H "${{ secrets.SSH_HOST }}" > ~/.ssh/known_hosts
@@ -21,10 +22,10 @@ jobs:
         run: | 
           ssh "${{ secrets.SSH_USER }}"@"${{ secrets.SSH_HOST }}" << EOF
           #echo ----- make directory in remote server -----
-          mkdir test
-          install -m 600 -D /dev/null ~/.ssh/id_rsa
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          ssh-keyscan -H "${{ secrets.SSH_HOST }}" > ~/.ssh/known_hosts
+          mkdir new
+          #install -m 600 -D /dev/null ~/.ssh/id_rsa
+          #echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          #ssh-keyscan -H "${{ secrets.SSH_HOST }}" > ~/.ssh/known_hosts
           #echo ---- take clone in remote server -----
           git clone git@github.com:rajan-addweb/clone-test.git
           exit
